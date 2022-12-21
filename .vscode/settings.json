@@ -2,6 +2,19 @@
     "files.associations": {
         "iostream": "cpp",
         "random": "cpp",
-        "cmath": "cpp"
-    }
+        "cmath": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "iomanip": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
