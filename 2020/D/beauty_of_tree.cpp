@@ -1,5 +1,19 @@
 /*
+    This is problem requires you to construct and navigate a bi-directional tree.
 
+    The tree is a simple adjecency list, where the parent appears at index Vi - 1 while the child is at i.
+
+    Then traverse the tree using DFS starting from the root, i = 0, while keeping track of current path.
+
+    Once the search reaches a node, add 1 to the counts a and b and add 1 + counts to the nodes i + a and i + b ahead 
+    of the current node in the path.
+
+    This gives the amount of times each node in the tree is reached by each players in all combinations.
+
+    To calculate the true count of each node (Both players combined), use the inclusion-exclusion formula:
+        Node Count = (ACount + BCount) * Number of Nodes - (ACount * B Count)
+    
+    Finally add up the counts of each node and divide by total number of combinations (N^2).
 */
 #include <iostream>
 #include <cstring>
@@ -13,12 +27,12 @@ using ll = long long;
 
 const int mxn = 5e5;
 int n, a, b;
-vector<vector<int>> adj;
+vector<vector<int>> children;
 vector<int> ca, cb;
 
 void dfs(int i, vector<int> &path){
     path.push_back(i);
-    for(int j : adj[i]){
+    for(int j : children[i]){
        dfs(j, path);
     }
     ca[i]++;
@@ -36,13 +50,13 @@ void dfs(int i, vector<int> &path){
 
 void solve(int cn){
     cin >> n >> a >> b;
-    adj = vector<vector<int>> (n + 1);
+    children = vector<vector<int>> (n + 1);
     ca = vector<int> (n + 1);
     cb = vector<int> (n + 1);
     for(int i = 1; i < n; i++){
         int v;
         cin >> v;
-        adj[v - 1].push_back(i);
+        children[v - 1].push_back(i);
     }
     vector<int> path;
     dfs(0, path);
